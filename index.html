@@ -1,11 +1,11 @@
 <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+        return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
         if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
             try {
                 var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
@@ -19,11 +19,11 @@
 
                 // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
                 var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                    row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
                 );
                 // Fallback
                 if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
+                    headerRowIndex = 0;
                 }
 
                 // Convert filtered JSON back to CSV
@@ -36,218 +36,278 @@
             }
         }
         return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+    }
+</script>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="3J Media Prints offers professional graphic design and printing services.">
-  <title>3J Media Prints - Graphic Design & Printing Services</title>
-   <link rel="icon" type="image/png" href="3J favicon.png" /> <!-- Favicon line -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Configure Tailwind with custom theme
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1e40af',
-            secondary: '#3b82f6',
-          },
-        },
-      },
-    };
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3J Media Prints offers professional graphic design and printing services.">
+    <title>3J Media Prints - Graphic Design & Printing Services</title>
+    <link rel="icon" type="image/png" href="3J favicon.png" /> <!-- Favicon line -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configure Tailwind with custom theme
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                    },
+                },
+            },
+        };
+    </script>
 </head>
+
 <body class="min-h-screen flex flex-col transition-colors duration-300">
-  <nav class="bg-white dark:bg-gray-800 shadow sticky top-0 z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-primary dark:text-white">3J Media Prints</h1>
-      <div class="flex space-x-4">
-        <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Home</a>
-        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">About</a>
-        <a href="#services" class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Services</a>
-        <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Portfolio</a>
-        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Contact</a>
-        <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">
-          <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-          <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <section id="home" class="bg-gray-100 dark:bg-gray-900 py-20 text-center">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Welcome to 3J Media Prints</h2>
-      <img src="3J logo.png" alt="3J Media Prints Logo" class="mx-auto mb-6 w-64 h-64 object-contain bg-gray-700 dark:bg-gray-900 rounded-xl shadow-lg">
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-        Your trusted partner for professional graphic design and high-quality printing services, delivering stunning visuals and exceptional results.
-      </p>
-      <a href="#contact" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-colors">Get a Quote</a>
-    </div>
-  </section>
-
-  <section id="about" class="py-20 bg-white dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">About Us</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        At 3J Media Prints, we specialize in transforming your ideas into reality with creative graphic design and top-tier printing solutions. Our experienced team is dedicated to delivering personalized, high-quality results for businesses and individuals.
-      </p>
-    </div>
-  </section>
-
-  <section id="services" class="py-20 bg-gray-100 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-10">Our Services</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Graphic Design</h3>
-          <p class="text-gray-600 dark:text-gray-300">Custom logos, branding, and marketing materials tailored to your vision.</p>
+    <nav class="bg-white dark:bg-gray-800 shadow sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primary dark:text-white">3J Media Prints</h1>
+            <div class="flex space-x-4">
+                <a href="#home"
+                    class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Home</a>
+                <a href="#about"
+                    class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">About</a>
+                <a href="#services"
+                    class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Services</a>
+                <a href="#portfolio"
+                    class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Portfolio</a>
+                <a href="#contact"
+                    class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">Contact</a>
+                <button id="theme-toggle"
+                    class="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary">
+                    <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Printing Services</h3>
-          <p class="text-gray-600 dark:text-gray-300">High-quality prints for business cards, brochures, flyers, and more.</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Large Format Printing</h3>
-          <p class="text-gray-600 dark:text-gray-300">Vibrant posters, banners, and signage for maximum impact.</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Custom Merchandise</h3>
-          <p class="text-gray-600 dark:text-gray-300">Personalized apparel, mugs, and promotional items for your brand.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <section id="portfolio" class="py-20 bg-white dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-10">Our Portfolio</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
-          <img src="https://jurist-jenkins.vercel.app/Esperanza's%20Fragrances%20mockups.jpg" alt="Luxury Liquid Soap Branding" class="max-h-full max-w-full object-contain">
+    <section id="home" class="bg-gray-100 dark:bg-gray-900 py-20 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Welcome to 3J Media Prints</h2>
+            <img src="3J logo.png" alt="3J Media Prints Logo"
+                class="mx-auto mb-6 w-64 h-64 object-contain bg-white dark:bg-gray-500 rounded-xl shadow-lg">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                Your trusted partner for professional graphic design and high-quality printing services, delivering
+                stunning visuals and exceptional results.
+            </p>
+            <a href="#contact"
+                class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-colors">Get
+                a Quote</a>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
-          <img src="https://jurist-jenkins.vercel.app/hoodie%20white%202.jpg" alt="Luxury Clothing Brand" class="max-h-full max-w-full object-contain">
+    </section>
+
+    <section id="about" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">About Us</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                At 3J Media Prints, we specialize in transforming your ideas into reality with creative graphic design
+                and top-tier printing solutions. Our experienced team is dedicated to delivering personalized,
+                high-quality results for businesses and individuals.
+            </p>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
-          <img src="https://jurist-jenkins.vercel.app/Verp%20bag%203.jpg" alt="Luxury Clothing Brand" class="max-h-full max-w-full object-contain">
+    </section>
+
+    <section id="services" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-10">Our Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Graphic Design</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Custom logos, branding, and marketing materials tailored
+                        to your vision.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Printing Services</h3>
+                    <p class="text-gray-600 dark:text-gray-300">High-quality prints for business cards, brochures,
+                        flyers, and more.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Large Format Printing</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Vibrant posters, banners, and signage for maximum
+                        impact.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Custom Merchandise</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Personalized apparel, mugs, and promotional items for
+                        your brand.</p>
+                </div>
+            </div>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
-          <img src="https://jurist-jenkins.vercel.app/Emf%20logo%202.png" alt="NGO Logo Design" class="max-h-full max-w-full object-contain">
+    </section>
+
+    <section id="portfolio" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-10">Our Portfolio</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
+                    <img src="https://jurist-jenkins.vercel.app/Esperanza's%20Fragrances%20mockups.jpg"
+                        alt="Luxury Liquid Soap Branding" class="max-h-full max-w-full object-contain">
+                </div>
+                <div
+                    class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
+                    <img src="https://jurist-jenkins.vercel.app/hoodie%20white%202.jpg" alt="Luxury Clothing Brand"
+                        class="max-h-full max-w-full object-contain">
+                </div>
+                <div
+                    class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
+                    <img src="https://jurist-jenkins.vercel.app/Verp%20bag%203.jpg" alt="Luxury Clothing Brand"
+                        class="max-h-full max-w-full object-contain">
+                </div>
+                <div
+                    class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
+                    <img src="https://jurist-jenkins.vercel.app/Emf%20logo%202.png" alt="NGO Logo Design"
+                        class="max-h-full max-w-full object-contain">
+                </div>
+                <div
+                    class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
+                    <img src="https://jurist-jenkins.vercel.app/Esperanza's%20Fragrances%20mockups.jpg"
+                        alt="Luxury Liquid Soap Branding" class="max-h-full max-w-full object-contain">
+                </div>
+                <div
+                    class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
+                    <img src="https://jurist-jenkins.vercel.app/Esperanza's%20Fragrances%20mockups.jpg"
+                        alt="Luxury Liquid Soap Branding" class="max-h-full max-w-full object-contain">
+                </div>
+            </div>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
-          <img src="https://jurist-jenkins.vercel.app/Esperanza's%20Fragrances%20mockups.jpg" alt="Luxury Liquid Soap Branding" class="max-h-full max-w-full object-contain">
+    </section>
+
+    <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-10">Contact Us</h2>
+            <form id="contactForm" class="max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                <div class="mb-4">
+                    <label for="name"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                    <input type="text" id="name"
+                        class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
+                        placeholder="Your Name" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                    <input type="email" id="email"
+                        class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
+                        placeholder="Your Email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                    <textarea id="message" rows="4"
+                        class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
+                        placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-colors">Send
+                    Message</button>
+            </form>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 p-4 m-2">
-          <img src="https://jurist-jenkins.vercel.app/Esperanza's%20Fragrances%20mockups.jpg" alt="Luxury Liquid Soap Branding" class="max-h-full max-w-full object-contain">
+    </section>
+
+    <section id="returns" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-8">Return Policy</h2>
+            <ul class="text-lg text-gray-700 dark:text-gray-300 space-y-4 list-disc pl-6">
+                <li><strong>Print Errors:</strong> If a mistake occurs due to our design, formatting, or printing
+                    process—such as incorrect layout, wrong text, or sizing—we take full responsibility. In such cases,
+                    we will offer a free reprint or a full refund. Please report the issue immediately upon receiving
+                    the order, along with clear details or images.</li>
+                <li><strong>Damaged Items:</strong> All items must be inspected immediately upon delivery or handoff. If
+                    there's any visible damage (e.g., scratches, smudges, bends), it must be reported on the spot with
+                    photo evidence. Once the item is accepted, we cannot process damage-related claims.</li>
+                <li><strong>Cancellations:</strong> You may cancel an order within 1 hour of placing it. After this
+                    window, we may have already begun production. In such cases, cancellation may not be possible, or
+                    only a partial refund may be offered depending on the stage of the job.</li>
+                <li><strong>Approved Designs:</strong> Once you approve a design—either digitally or in person—it is
+                    considered final. We do not offer refunds or accept returns for errors that were present in the
+                    approved design, including typos, incorrect information, or color variations caused by screen vs.
+                    print differences.</li>
+            </ul>
+            <p class="text-center mt-6 text-gray-700 dark:text-gray-300">For help, contact us with your Order ID and a
+                brief explanation.</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-10">Contact Us</h2>
-      <form id="contactForm" class="max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-        <div class="mb-4">
-          <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
-          <input type="text" id="name" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white" placeholder="Your Name" required>
+
+    <footer class="bg-white dark:bg-gray-800 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-600 dark:text-gray-300">&copy; 2025 3J Media Prints. All rights reserved.</p>
+            <p class="text-gray-600 dark:text-gray-300 mt-2">Contact: 3jmediaprint@gmail.com | +233 20 323 6311</p>
         </div>
-        <div class="mb-4">
-          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-          <input type="email" id="email" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white" placeholder="Your Email" required>
-        </div>
-        <div class="mb-4">
-          <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-          <textarea id="message" rows="4" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white" placeholder="Your Message" required></textarea>
-        </div>
-        <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-colors">Send Message</button>
-      </form>
-    </div>
-  </section>
+    </footer>
 
-  <section id="returns" class="py-20 bg-white dark:bg-gray-800">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-8">Return Policy</h2>
-    <ul class="text-lg text-gray-700 dark:text-gray-300 space-y-4 list-disc pl-6">
-      <li><strong>Print Errors:</strong> If a mistake occurs due to our design, formatting, or printing process—such as incorrect layout, wrong text, or sizing—we take full responsibility. In such cases, we will offer a free reprint or a full refund. Please report the issue immediately upon receiving the order, along with clear details or images.</li>
-      <li><strong>Damaged Items:</strong> All items must be inspected immediately upon delivery or handoff. If there's any visible damage (e.g., scratches, smudges, bends), it must be reported on the spot with photo evidence. Once the item is accepted, we cannot process damage-related claims.</li>
-      <li><strong>Cancellations:</strong> You may cancel an order within 1 hour of placing it. After this window, we may have already begun production. In such cases, cancellation may not be possible, or only a partial refund may be offered depending on the stage of the job.</li>
-      <li><strong>Approved Designs:</strong> Once you approve a design—either digitally or in person—it is considered final. We do not offer refunds or accept returns for errors that were present in the approved design, including typos, incorrect information, or color variations caused by screen vs. print differences.</li>
-    </ul>
-    <p class="text-center mt-6 text-gray-700 dark:text-gray-300">For help, contact us with your Order ID and a brief explanation.</p>
-  </div>
-</section>
+    <script>
+        // Function to update theme and icons
+        function updateTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('moon-icon').classList.add('hidden');
+                document.getElementById('sun-icon').classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('sun-icon').classList.add('hidden');
+                document.getElementById('moon-icon').classList.remove('hidden');
+            }
+        }
 
+        // Detect system theme preference and apply it
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const savedTheme = localStorage.getItem('theme');
 
-  <footer class="bg-white dark:bg-gray-800 py-6 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-gray-600 dark:text-gray-300">&copy; 2025 3J Media Prints. All rights reserved.</p>
-      <p class="text-gray-600 dark:text-gray-300 mt-2">Contact: 3jmediaprint@gmail.com | +233 20 323 6311</p>
-    </div>
-  </footer>
+        // Apply saved theme or system preference
+        if (savedTheme) {
+            updateTheme(savedTheme === 'dark');
+        } else {
+            updateTheme(prefersDarkScheme.matches);
+        }
 
-  <script>
-    // Function to update theme and icons
-    function updateTheme(isDark) {
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-        document.getElementById('moon-icon').classList.add('hidden');
-        document.getElementById('sun-icon').classList.remove('hidden');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.getElementById('sun-icon').classList.add('hidden');
-        document.getElementById('moon-icon').classList.remove('hidden');
-      }
-    }
+        // Listen for system theme changes
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) { // Only update if user hasn't manually set a theme
+                updateTheme(e.matches);
+            }
+        });
 
-    // Detect system theme preference and apply it
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme');
-    
-    // Apply saved theme or system preference
-    if (savedTheme) {
-      updateTheme(savedTheme === 'dark');
-    } else {
-      updateTheme(prefersDarkScheme.matches);
-    }
+        // Theme toggle button
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = !document.documentElement.classList.contains('dark');
+            updateTheme(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
 
-    // Listen for system theme changes
-    prefersDarkScheme.addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) { // Only update if user hasn't manually set a theme
-        updateTheme(e.matches);
-      }
-    });
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = document.querySelector(anchor.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
-    // Theme toggle button
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      const isDark = !document.documentElement.classList.contains('dark');
-      updateTheme(isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', (e) => {
-        e.preventDefault();
-        const section = document.querySelector(anchor.getAttribute('href'));
-        section.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    // Form submission handling
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      alert(`Thank you, ${name}! Your message has been sent.`);
-      document.getElementById('contactForm').reset();
-    });
-  </script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            alert(`Thank you, ${name}! Your message has been sent.`);
+            document.getElementById('contactForm').reset();
+        });
+    </script>
 </body>
+
 </html>
